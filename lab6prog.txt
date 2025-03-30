@@ -1,0 +1,55 @@
+# 6.1 Функция проверки делимости на 3
+def is_divisible_by_three():
+    number = int(input("Введите число: "))
+    if number % 3 == 0:
+        return True
+    return False
+
+print("6.1:", is_divisible_by_three())
+
+# 6.2 Деление 100 на введенное число с обработкой исключений
+def divide_by_number():
+    try:
+        number = float(input("Введите число для деления 100: "))
+        result = 100 / number
+        return result
+    except ValueError:
+        return "Ошибка: Введено не число"
+    except ZeroDivisionError:
+        return "Ошибка: Деление на ноль"
+    except Exception as e:
+        return f"Произошла ошибка: {e}"
+
+print("6.2:", divide_by_number())
+
+# 6.3 Проверка магической даты
+def is_magic_date():
+    date = input("Введите дату в формате ДД.ММ.ГГГГ: ")
+    try:
+        day, month, year = map(int, date.split('.'))
+        last_two_digits = year % 100
+        return day * month == last_two_digits
+    except:
+        return "Неверный формат даты"
+
+print("6.3:", is_magic_date())
+
+# 6.4 Проверка счастливого билета
+def is_lucky_ticket(ticket):
+    # Проверяем, что длина четная
+    if len(ticket) % 2 != 0:
+        return False
+    
+    # Преобразуем строку в список цифр
+    digits = [int(d) for d in ticket]
+    # Находим середину
+    half = len(digits) // 2
+    # Сравниваем суммы первой и второй половины
+    return sum(digits[:half]) == sum(digits[half:])
+
+# Тесты для счастливого билета
+print("6.4:")
+print("385916:", is_lucky_ticket("385916"))  # True
+print("231002:", is_lucky_ticket("231002"))  # False
+print("12345678:", is_lucky_ticket("12345678"))  # False
+print("123321:", is_lucky_ticket("123321"))  # True
